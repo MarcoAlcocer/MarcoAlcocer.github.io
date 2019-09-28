@@ -76,7 +76,6 @@ input, select, textarea {
 
 	html {
 		box-sizing: border-box;
-		scroll-behavior: smooth;
 	}
 
 	*, *:before, *:after {
@@ -2593,8 +2592,8 @@ input, select, textarea {
 		-ms-justify-content: space-between;
 		justify-content: space-between;
 		background-color: #1f1815;
-		background-attachment: 								scroll;
-		background-image: url("images/overlay.png"),url("images/bg.jpg");
+		background-attachment: scroll,								scroll;
+		background-image: url("images/overlay.png"),url("images/bg2.jpg");
 		background-position:left, 							top;
 		background-repeat:repeat,								no-repeat;
 		background-size:auto,							cover;
@@ -2603,7 +2602,7 @@ input, select, textarea {
 		left: 0;
 		padding: 8em 4em;
 		position: fixed;
-		text-align: right;
+		text-align: center;
 		top: 0;
 		width: 35%;
 	}
@@ -3103,7 +3102,7 @@ input, select, textarea {
 		/* Header */
 
 			#header {
-				background-attachment: scroll;
+				background-attachment: fixed;
 				background-position: top left, top;
 				background-size: auto,		cover;
 				left: auto;
@@ -3128,7 +3127,7 @@ input, select, textarea {
 			#footer {
 				background-attachment: scroll;
 				background-color: #1f1815;
-				background-image: url("images/overlay.png"), url("images/zap4.jpg");
+				background-image: url("images/overlay.png"), url("images/overlay.jpg");
 				background-position: left,						top;
 				background-repeat: repeat,							no-repeat;
 				background-size: auto,							contain;
