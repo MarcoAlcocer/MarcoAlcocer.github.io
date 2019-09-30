@@ -3103,7 +3103,7 @@ input, select, textarea {
 
 			#header {
 				background-attachment: fixed;
-				background-position: top left, top;
+				background-position: top, top;
 				background-size: auto,		cover;
 				left: auto;
 				padding: 6em 4em;
