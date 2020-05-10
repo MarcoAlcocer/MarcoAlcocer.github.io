@@ -2143,7 +2143,7 @@ input, select, textarea {
 
 			.image.avatar img {
 				border-radius: 100%;
-				width: 100%;
+				width: 120%;
 			}
 
 /* List */
@@ -2593,7 +2593,7 @@ input, select, textarea {
 		justify-content: space-between;
 		background-color: #1f1815;
 		background-attachment: scroll,								scroll;
-		background-image: url("images/overlay.png"),url("images/bg2.jpg");
+		background-image: url("images/overlay.png"),url("images/bg_other.jpg");
 		background-position:left, 							top;
 		background-repeat:repeat,								no-repeat;
 		background-size:auto,							cover;
