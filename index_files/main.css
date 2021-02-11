@@ -111,7 +111,7 @@ input, select, textarea {
 		-ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		border-bottom: dotted 1px;
-		color: #49bf9d;
+		color: #1f17a0;
 		text-decoration: none;
 	}
 
@@ -123,7 +123,8 @@ input, select, textarea {
 
 	strong, b {
 		color: #787878;
-		font-weight: 400;
+		font-weight: 600;
+		font-size: x-large;
 	}
 
 	em, i {
@@ -2571,7 +2572,7 @@ input, select, textarea {
 		justify-content: space-between;
 		background-color: #1f1815;
 		background-attachment: scroll,								scroll;
-		background-image: url("images/overlay.png"),url("images/bg_other.jpg");
+		background-image: url("images/americas_col.png");
 		background-position:left, 							top;
 		background-repeat:repeat,								no-repeat;
 		background-size:auto,							cover;
@@ -2602,7 +2603,7 @@ input, select, textarea {
 		}
 
 		#header strong, #header b {
-			color: #ffffff;
+			color: #000000;
 		}
 
 		#header h2, #header h3, #header h4, #header h5, #header h6 {
@@ -2634,8 +2635,8 @@ input, select, textarea {
 			#nav ul li a {
 				display: block;
 				padding: 0.5em 1.5em 0.5em 1.5em;
-				color: rgba(255, 255, 255, 0.7);
-				text-decoration: none;
+				color: rgba(0, 0, 0, 0.9);
+				text-decoration: underline;
 				outline: 0;
 				border: 0;
 				-moz-transition: none;
@@ -2647,7 +2648,7 @@ input, select, textarea {
 				#nav ul li a span {
 					position: relative;
 					display: block;
-					font-size: 0.8em;
+					font-size: 1em;
 				}
 
 					#nav ul li a span:before {
@@ -2679,7 +2680,7 @@ input, select, textarea {
 		}
 
 	#footer .copyright {
-		color: rgba(255, 255, 255, 0.5);
+		color: rgba(0, 0, 0, 0.5);
 		font-size: 0.8em;
 		list-style: none;
 		margin: 1em 0 0 0;
