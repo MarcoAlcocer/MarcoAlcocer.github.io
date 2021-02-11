@@ -129,6 +129,7 @@ input, select, textarea {
 
 	em, i {
 		font-style: italic;
+		font-size: smaller;
 	}
 
 	p {
@@ -2581,7 +2582,7 @@ input, select, textarea {
 		left: 0;
 		padding: 8em 4em;
 		position: fixed;
-		text-align: center;
+		text-align: right;
 		top: 0;
 		width: 25%;
 	}
@@ -2648,7 +2649,7 @@ input, select, textarea {
 				#nav ul li a span {
 					position: relative;
 					display: block;
-					font-size: 1em;
+					font-size: 1.1em;
 				}
 
 					#nav ul li a span:before {
