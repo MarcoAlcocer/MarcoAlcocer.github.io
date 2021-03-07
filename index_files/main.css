@@ -2122,7 +2122,7 @@ input, select, textarea {
 			}
 
 			.image.avatar img {
-				border-radius: 100%;
+				border-radius: 40px;
 				width: 115%;
 				border: 3px solid #3952ce;
 			}
@@ -2650,7 +2650,7 @@ input, select, textarea {
 				#nav ul li a span {
 					position: relative;
 					display: block;
-					font-size: 1.1em;
+					font-size: 0.9em;
 				}
 
 					#nav ul li a span:before {
