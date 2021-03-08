@@ -102,7 +102,7 @@ input, select, textarea {
 		font-family: "Source Sans Pro", Helvetica, sans-serif;
 		font-size: 16pt;
 		font-weight: 400;
-		line-height: 1.75em;
+		line-height: 1.25em;
 	}
 
 	a {
@@ -2572,9 +2572,9 @@ input, select, textarea {
 		-webkit-justify-content: space-between;
 		-ms-justify-content: space-between;
 		justify-content: space-between;
-		background-color: #1f1815;
+		background-color: #b2b2b28a;
 		background-attachment: scroll,								scroll;
-		background-image: url("images/americas_col.png");
+		/* background-image: url("images/americas_col.png"); */
 		background-position:left, 							top;
 		background-repeat:repeat,								no-repeat;
 		background-size:auto,							cover;
