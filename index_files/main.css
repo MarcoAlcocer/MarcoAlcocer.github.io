@@ -117,7 +117,7 @@ input, select, textarea {
 
 		a:hover {
 			border-bottom-color: transparent;
-			color: #49bf9d !important;
+			color: #f10a00 !important;
 			text-decoration: none;
 		}
 
@@ -2110,7 +2110,7 @@ input, select, textarea {
 		}
 
 			.image.fit img {
-				width: 100%;
+				width: 80%;
 			}
 
 		.image.avatar {
