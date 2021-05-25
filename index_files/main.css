@@ -2637,7 +2637,6 @@ input, select, textarea {
 				display: block;
 				padding: 0.5em 1.5em 0.5em 1.5em;
 				color: #ffffff;
-				text-decoration: underline;
 				outline: 0;
 				border: 0;
 				-moz-transition: none;
