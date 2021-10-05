@@ -2572,9 +2572,9 @@ input, select, textarea {
 		-webkit-justify-content: space-between;
 		-ms-justify-content: space-between;
 		justify-content: space-between;
-		background-color: #b2b2b28a;
+		background-color: #0000008a;
 		background-attachment: scroll,								scroll;
-		background-image: url("images/Iguala.jpg"); 
+		/*background-image: url("images/Iguala.jpg"); */
 		background-position:left, 							top;
 		background-repeat:no-repeat,								no-repeat;
 		background-size:cover,							cover;
