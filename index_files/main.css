@@ -123,6 +123,11 @@ input, select, textarea {
 			text-decoration: none;
 		}
 
+
+	b, strong {
+		color: #000000d1;
+	}
+	
 	strong, b {
 		color: #787878;
 		font-weight: 600;
@@ -2616,7 +2621,7 @@ input, select, textarea {
 		#header h1 {
 			/*color: rgba(255, 255, 255, 0.6);*/
 			font-size: 1.35em;
-			line-height: 1.75em;
+			line-height: 1.25em;
 			margin: 20px;
 		}
 
