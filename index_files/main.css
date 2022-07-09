@@ -74,6 +74,11 @@ input, select, textarea {
 	appearance: none;
 }
 
+img {
+	margin-left: 30px;
+}
+
+
 /* Basic */
 
 	html {
@@ -132,6 +137,8 @@ input, select, textarea {
 		color: #787878;
 		font-weight: 600;
 		font-size: x-large;
+		font-size: x-large;color: #000000d1;
+		
 	}
 
 	em, i {
