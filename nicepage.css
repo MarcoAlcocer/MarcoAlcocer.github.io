@@ -41323,13 +41323,22 @@ a.u-link.u-text-hover-grey-90:hover {
   font-size: 1.25rem;
   margin: -34px auto 31px 22px;
 }
+
+.u-header .u-btn-1 {
+  background-image: none;
+  padding: 0;
+}
 @media (max-width: 1199px) {
   .u-header .u-menu-1 {
     width: auto;
   }
 }
 
-
+@media (max-width: 767px) {
+  .u-header .u-text-1 {
+    margin-top: 20px;
+  }
+}
 
  .u-footer {
   background-image: none;
