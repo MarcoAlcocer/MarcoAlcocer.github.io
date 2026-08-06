@@ -50,3 +50,13 @@
   background-image: none;
   padding: 0;
 }
+
+.pub-item { display: grid; grid-template-columns: 70px 1fr; gap: 1.25rem; margin-bottom: 1.25rem; } 
+
+.pub-year { color: #777; font-size: 0.95rem; } 
+
+.pub-cite { font-size: 1rem; line-height: 1.55; } 
+
+.pub-cite a { text-decoration: none; color: inherit; } 
+
+.pub-cite a:hover { text-decoration: underline; }
