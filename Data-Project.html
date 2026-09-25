@@ -135,6 +135,540 @@
 			  
 			</div>  
     </section>
+
+	  <!-- =========================================================
+     QUEENPINS INTERACTIVE MAP + CASE STUDIES
+     Paste this entire block into your HTML page where you want it to appear.
+     It is self-contained except for Google Charts, loaded below.
+     If your page already loads Google Charts, remove the loader <script> line.
+     ========================================================= -->
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+
+<style>
+  /* Everything is prefixed qp- to avoid interfering with the rest of your site. */
+  .qp-wrap {
+    max-width: 1120px;
+    margin: 48px auto;
+    font-family: inherit;
+    color: inherit;
+  }
+
+  .qp-header {
+    margin-bottom: 26px;
+  }
+
+  .qp-title {
+    margin: 0 0 10px 0;
+    font-size: clamp(30px, 4vw, 46px);
+    line-height: 1.1;
+    font-weight: 700;
+  }
+
+  .qp-subtitle {
+    max-width: 850px;
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.65;
+    color: #4f4f4f;
+  }
+
+  .qp-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin: 24px 0 28px 0;
+  }
+
+  .qp-stat {
+    padding: 16px 18px;
+    border: 1px solid #dedede;
+    border-radius: 8px;
+    background: #fff;
+  }
+
+  .qp-stat-number {
+    display: block;
+    font-size: 26px;
+    line-height: 1;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  .qp-stat-label {
+    font-size: 13px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+
+  .qp-map-card {
+    border: 1px solid #dedede;
+    border-radius: 8px;
+    background: #fff;
+    padding: 18px 18px 14px 18px;
+  }
+
+  #qp-map {
+    width: 100%;
+    min-height: 520px;
+  }
+
+  .qp-map-note {
+    margin: 8px 4px 0 4px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #666;
+  }
+
+  .qp-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin: 22px 0 14px 0;
+  }
+
+  .qp-select,
+  .qp-button {
+    font: inherit;
+    font-size: 14px;
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+    background: #fff;
+    color: #222;
+    min-height: 40px;
+  }
+
+  .qp-select {
+    min-width: 230px;
+    padding: 8px 34px 8px 10px;
+  }
+
+  .qp-button {
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: background-color .15s ease, border-color .15s ease;
+  }
+
+  .qp-button:hover,
+  .qp-button:focus {
+    background: #f4f4f4;
+    border-color: #888;
+  }
+
+  .qp-results-heading {
+    margin: 28px 0 14px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dedede;
+    font-size: 24px;
+    line-height: 1.25;
+    font-weight: 700;
+  }
+
+  .qp-empty {
+    padding: 26px 20px;
+    border: 1px dashed #cfcfcf;
+    border-radius: 8px;
+    color: #666;
+    line-height: 1.6;
+    background: #fafafa;
+  }
+
+  .qp-cases {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .qp-card {
+    border: 1px solid #dedede;
+    border-radius: 8px;
+    background: #fff;
+    padding: 20px;
+    align-self: start;
+  }
+
+  .qp-card h3 {
+    margin: 0 0 7px 0;
+    font-size: 21px;
+    line-height: 1.25;
+  }
+
+  .qp-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 13px;
+    font-size: 13px;
+    color: #666;
+  }
+
+  .qp-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border: 1px solid #d5d5d5;
+    border-radius: 999px;
+    background: #f7f7f7;
+  }
+
+  .qp-preview {
+    margin: 0 0 12px 0;
+    font-size: 15px;
+    line-height: 1.62;
+  }
+
+  .qp-card details {
+    margin-top: 8px;
+  }
+
+  .qp-card summary {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 7px 0;
+  }
+
+  .qp-body {
+    padding-top: 6px;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .qp-body p {
+    margin: 0 0 13px 0;
+  }
+
+  .qp-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .qp-source-note {
+    padding: 10px 12px;
+    border-left: 3px solid #b7b7b7;
+    background: #f7f7f7;
+    font-size: 14px;
+  }
+
+  .qp-method-note {
+    margin-top: 28px;
+    padding: 16px 18px;
+    border-top: 1px solid #dedede;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #666;
+  }
+
+  @media (max-width: 760px) {
+    .qp-wrap {
+      margin: 30px auto;
+    }
+
+    .qp-stats {
+      grid-template-columns: 1fr;
+    }
+
+    #qp-map {
+      min-height: 390px;
+    }
+
+    .qp-cases {
+      grid-template-columns: 1fr;
+    }
+
+    .qp-select {
+      width: 100%;
+    }
+
+    .qp-button {
+      flex: 1 1 auto;
+    }
+  }
+</style>
+
+<section class="qp-wrap" id="queenpins-cases">
+  <div class="qp-header">
+    
+    <p class="qp-subtitle">
+      Explore qualitative case studies of women who reached the highest levels of criminal organizations.
+      Click a highlighted country on the map to view the leaders associated with that country.
+    </p>
+
+    <div class="qp-stats" aria-label="Dataset summary">
+      <div class="qp-stat">
+        <span class="qp-stat-number">45</span>
+        <span class="qp-stat-label">Women leaders</span>
+      </div>
+      <div class="qp-stat">
+        <span class="qp-stat-number">18</span>
+        <span class="qp-stat-label">Countries</span>
+      </div>
+      <div class="qp-stat">
+        <span class="qp-stat-number">6</span>
+        <span class="qp-stat-label">Continents</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="qp-map-card">
+    <div id="qp-map" aria-label="World map showing countries represented in the Queenpins dataset"></div>
+    <p class="qp-map-note">
+      Darker shading indicates more women leaders represented in the dataset. The shading describes this
+      dataset, not the population prevalence of women criminal leaders.
+    </p>
+  </div>
+
+  <div class="qp-controls">
+    <label for="qp-country-select" style="font-size:14px; font-weight:600;">Explore cases:</label>
+    <select id="qp-country-select" class="qp-select" aria-label="Choose a country">
+      <option value="">Choose a country</option>
+    </select>
+    <button type="button" id="qp-all-button" class="qp-button">Show all cases</button>
+    <button type="button" id="qp-reset-button" class="qp-button">Reset</button>
+  </div>
+
+  <h3 id="qp-results-heading" class="qp-results-heading">Select a country</h3>
+  <div id="qp-cases-container" class="qp-cases">
+    <div class="qp-empty">
+      Click a colored country on the map, or choose a country from the menu above, to display its case studies.
+    </div>
+  </div>
+
+  <div class="qp-method-note">
+    <strong>About the cases.</strong> The case studies document leaders' backgrounds, entry into organized crime,
+    pathways to leadership, and experiences in power. For transnational cases, the map assigns each leader to one
+    primary country so that each leader is counted once. The combined Caltagirone case includes three women leaders
+    and therefore counts as three leaders in the map totals. See the associated article and online appendix for case
+    selection, source documentation, and discussion of gender bias in available reporting.
+  </div>
+</section>
+
+<script>
+(function () {
+  "use strict";
+
+  /*
+    COUNTRY ASSIGNMENT NOTE
+    -----------------------
+    Each case is assigned to one primary country for mapping purposes.
+    If you want to change a country assignment later, edit countryCode and country
+    in the relevant case object below. ISO-2 country codes are used by Google GeoChart.
+  */
+
+  const queenpinsCases = [{"name": "Raffaella D’Alterio", "countryCode": "IT", "country": "Italy", "pathway": "Inherited power from male kin", "leaderCount": 1, "body": "<p>Raffaella D’Alterio, known as “Miciona,” which translates to “Big\nFemale Kitten” in Italian, was born in Naples, Italy, in 1965, as the\ndaughter of a Mafia boss. She began her criminal activity in the 1980s\nand took control of her group in 2002 following the arrest of her\nhusband and previous leader, Nicola Pianese. Upon his release, a violent\npower struggle ensued, culminating in Raffaella allegedly arranging his\nmurder, although sources disagree on this claim. Over the next six\nyears, she efficiently led the organization, primarily based in Naples,\nfocusing on drug trafficking, extortion, counterfeiting, and robbery,\namassing estimated profits exceeding $10 billion USD annually.\nProsecutors accuse her of furthering the group’s ties with the Camorra,\na Neopolitan mafia known for its violence. Her reign came to an end in\n2012 when she was arrested alongside 65 other members, and she is\ncurrently serving her sentence. The family lawyer, in an attempt to\ndefend her claimed ’being the wife and son of a boss does not\nautomatically make you a criminal or the leader of a clan’ (The\nTelegraph). Both her children, Caterina and Raffaello are involved in\nthe organization.</p>"}, {"name": "Raquel de Oliveira", "countryCode": "BR", "country": "Brazil", "pathway": "Inherited power from male kin", "leaderCount": 1, "body": "<p>Raquel de Oliveira was born in Rocinha, the largest favela in Rio and\nBrazil in 1961. Her mother was a domestic worker, and her father, as she\ndescribed herself, was a pedophile who abandoned her at six years old.\nAround the same time, Oliveira started consuming drugs. When she was\nnine years old, her grandmother, a gambler, sold her to the man who\nwould introduce her to the drug trafficking world. He armed her at just\n11 years and used her as a mule. When she was 15 years old, she killed a\nman who attempted to rape her when she was delivering him a package of\nmarijuana. When she was 25 years old, she married Ednaldo de Souza, the\nkingpin of Rocinha’s drug trade. In that world, being the wife of a drug\nlord was a coveted position, one that many women aspired to. Her role\nbrought her not only prestige but also commanded both respect and fear.\nWhen he was murdered in 1988, she fell into depression, but then she\ntook over leadership and cemented her place among Brazil’s most feared\ndrug leaders. She was known to be particularly ruthless and violent.\nAfter developing a cocaine addiction, she submitted herself into a\nrehabilitation facility in 2005 and left the underworld completely.</p>"}, {"name": "Sebastiana Hortencia Cottona Vásquez", "countryCode": "GT", "country": "Guatemala", "pathway": "Inherited power from male kin", "leaderCount": 1, "body": "<p>Sebastiana Hortencia Cottona Vásquez, also known as “La Tana” or “La\nDoña,” was born around 1954 or 1955 in Malacatán, Guatemala, a strategic\nhub for drug trafficking. She grew up with an alcoholic father who\nabused her mother, leading her to escape her home when she was about 7\nyears old. At 18, Sebastiana Cottona Vásquez was kidnapped by a man who\nwould later become her husband and the father of her five children.\nAfter he abandoned her and their children, she turned to drug\ntrafficking to support her family. She eventually met and married Juan\nAlberto Ortiz López, also known as “Juan Chamalé,” whom the DEA\nconsidered the top drug trafficker in Guatemala. Following his arrest in\nMarch 2011, she inherited control of the organization. She maintained\nthe group’s ties with influential organizations like the Sinaloa Cartel,\nbut she also forged new alliances with key figures such as the Digna\nValle Cartel and Nicaragua’s “Los Charros.” She was arrested in October\n2014 in Chiapas, Mexico. Even though she was known for her violent\nreputation, her attorney defended her by emphasizing her difficult\ncircumstances as a woman, telling the court: “I just want you to\nunderstand. A single mother, facing all these problems—dealing with\ninsecurities, both financial and physical, having been violated in a\ncountry that the State Department calls one of the most dangerous in\nCentral America... That was the environment she was living in, in a\nrural area dominated by violent, hyper-macho men” (Vice, 2021).</p>"}, {"name": "Marllory Chacón Rossel", "countryCode": "GT", "country": "Guatemala", "pathway": "Inherited power from male kin", "leaderCount": 1, "body": "<p>Marllory Chacón Rossel, known as “La Reina del Sur” (<em>The Queen of\nthe South</em>), was born on October 4, 1972, in Santa Rosa, Guatemala,\ninto a middle-class family. She studied psychology for three years\nbefore dropping out of university to start her textile business and\nlater a home decorating business with her first husband, whom she later\ndivorced. In 2001, she married Jorge Andrés Fernández Carbajal, a\nHonduran who managed financial transactions for Colombian cartels in\nCentral America. After his arrest in 2002, Colombian drug traffickers\nencouraged Marllory to take over his operations. Despite Fernández\nCarbajal being released six months later, Marllory had already seized\ncontrol. By 2003, she was laundering money for at least three cartels,\nhandling hundreds of millions of dollars. Through this work, she began\nnot only managing money and brokering deals but also trafficking drugs\nherself. By 2008, Marllory’s power and network, centered in Guatemala\nbut extending to Honduras and Panamá, had grown so extensive that her\nhusband’s involvement was no longer necessary. In 2012, the DEA\nidentified Marllory as a prominent leader of a drug trafficking\norganization. After two years of negotiations, she voluntarily\nsurrendered to the authorities in 2014 and was sentenced to 12 years in\nprison. However, she was released in 2019, presumably as part of a deal,\nwith her whereabouts remaining unknown.</p>"}, {"name": "Yoshiko Matsuda", "countryCode": "JP", "country": "Japan", "pathway": "Inherited power from male kin", "leaderCount": 1, "body": "<p>Yoshiko Matsuda, known as the “Queen of the Yakuza,” was born\nMatsunga in Yokohama, Japan, around 1916 or 1917, into a financially\nstable family that provided her with a decent education. Her life\ndramatically changed after World War II when her family struggled to\nmake ends meet in the postwar economy. Yoshiko and her sister turned to\nsex work, where they gained recognition and praise for their beauty.\nYoshiko soon met and became involved with Giichi Matsuda, founder of the\nKanto Matsuzakaya Matsuda Gumi. The group, commonly known as the\nMatsuda-gumi, is a yakuza criminal organization founded in 1945. While\nwomen’s exclusion is often informal in other criminal organizations, it\nis institutionalized within the Yakuza: women cannot become official\nmembers and can only gain affiliation through their partners. However,\nonce integrated into the gang, they often hold significant roles. The\n“Ane-san,” which translates to “big sister” but refers to the boss’s\nwife, has financial responsibilities and oversees the care of its\nmembers. Yoshiko became the “Ane-san” when she married Giichi Matsuda\nand took on her gendered role. Soon, war with a rival broke out, and\nGiichi Matsuda was killed in July 1946, with one account claiming that\nit was a coup attempt and another that it was a rival yakuza member.\nYoshiko Matsuda assumed leadership following her husband’s death. By\nsome accounts, she found leadership too difficult. The Matsuda-gumi\nallegedly lost some territory to a rival soon after the death of Giichi.\nIn 1947, the Allied Command ordered the dissolution of the Matsuda-gumi.\nDespite Yoshiko’s attempts at diplomacy, the group disbanded later that\nyear following alleged attacks from the U.S. military. According to an\ninterview with a popular magazine, Yoshiko Matsuda stated that the\nyakuza must be wiped out, that media glorifying the yakuza should be\nbanned, and that she would devote herself to social welfare. Afterward,\nrecords of Yoshiko’s whereabouts became scarce, and by 1956, it was\npresumed she had died from a drug overdose.</p>"}, {"name": "Chizue Anzai", "countryCode": "JP", "country": "Japan", "pathway": "Inherited power from male kin", "leaderCount": 1, "body": "<p>Little is known about Chizue Anzai’s early life, but she gained\nwidespread recognition after marrying Sentaro, the leader of a drug\ntrafficking Yakuza organization in the greater Tokyo area. Women are\nformally excluded from the Yakuza, but once affiliated through marriage,\nthey often assumed significant roles, with the most notable being the\nAne-san, or the boss’s wife. As “Ane-san,” Anzai expressed she felt a\nmotherly need to care for the subordinate members and their wives, as if\nthey were her own children. In line with a broader norm in the Yakuza\nand Japanese society as a whole, she was also responsible for the\norganization’s finances. After Anzai’s husband admitted himself to a\nhospital, she managed the business under his orders. Among the\nsubordinates, her words carried the same authority as Sentaro’s; they\nbelieved her voice represented his, and her orders were seen as an\nextension of his will.</p>"}, {"name": "Concetta Scalisi, Maria Scuderi, and Paola Torrisi", "countryCode": "IT", "country": "Italy", "pathway": "Inherited power from male kin", "leaderCount": 3, "body": "<p>The three queens of Caltagirone are Concetta Scalisi, born around\n1955/1956, Maria Scuderi, and Paola Torrisi, the latter two born around\n1963/1964. Torrisi is the daughter of a high-ranking member of the\nLaudani clan in Sicily, Italy, also known as the “Mussi di ficurina” or\nPrickly Pear Lip Gang. She began getting involved in the clan at a young\nage by organizing couriers. The other two women are also presumed to be\nrelatives within the notorious Laudani family. When the clan’s leader,\nGaetano Laudani, was shot in 1992, his son Giuseppe was too young to\nassume leadership, so the responsibility of grooming him as the heir to\nthe powerful clan fell to these three women. While some sources suggest\nGiuseppe’s grandfather, Torrisi’s uncle, helped guide the organization,\nmost reliable sources place leadership solely on Torrisi, Scuderi, and\nScalisi. During this time, they ruled the clan with an iron grip,\noverseeing all operations, including financial affairs, arms\ntrafficking, drug deals, and ordering executions. However, when Guiseppe\ncame of age in February 2016, he betrayed the women and the rest of the\nclan by informing authorities about their activities, ultimately leading\nto their arrest for extortion, drug trafficking, and possession of\nillegal arms. His grandfather, Sebastiano Laudani, publicly expressed\ndisappointment, lamenting that the last blood relative of the family had\ntainted its legacy.</p>"}, {"name": "Jasiane Silva Teixeira", "countryCode": "BR", "country": "Brazil", "pathway": "Inherited power from male kin", "leaderCount": 1, "body": "<p>Jasiane Silva Teixeira, known as “The Queen of Hearts” or “Dona\nMaria,” was born in Vitória da Conquista, Brazil in 1987 or 1988.\nTeixeira is the stepdaughter of one of the oldest traffickers in the\nsouthwestern region, Antonilton de Jesus Martines, known as Nenzão. She\nfurthered her ties to the criminal world when she married Bruno de Jesús\nCamilo, leader of a criminal operation. In 2014 he was killed in a\nconfrontation with civil police in southern Bahia, and Teixeira rose to\npower. She formed alliances with members of other criminal organizations\nfrom Bahia and Rio de Janeiro, and quickly became one of the most\ninfluential figures in the Bahia state of Brazil. Teixeira’s network\ntransported drugs and weapons from Bolivia, Venezuela, Colombia, and\nPeru, granting her control over the southeastern region of Bahia and\nextending her influence into the neighboring state of Minas Gerais. She\nwas apprehended in São Paulo in September 2019, facing charges including\ndrug trafficking, robbery, arms trafficking, corruption, involvement in\nover 100 murders, and other serious offenses. Upon her arrest, the\nauthorities learned that she was married to Márcio Faria dos Santos,\nknown as “Carioca,” identified as the head of drug trafficking in\neastern São Paulo.</p>"}, {"name": "Thelma Wright", "countryCode": "US", "country": "United States", "pathway": "Inherited power from male kin", "leaderCount": 1, "body": "<p>Thelma Wright, “The Gangster Queen of Philadelphia,” was born on\nAugust 8, 1956, into a working-class Catholic family in South\nPhiladelphia. Thelma’s childhood was relatively stable and she enjoyed a\nfairly typical upbringing, even attending Catholic school. After high\nschool, Thelma worked at a bank and later took a job as a government\nsecretary. In November 1977, Thelma began dating Jackie Wright, a former\nBlack Mafia member who had left the organization to establish his own\nheroin business. Jackie’s drug use spiraled into addiction, and he\nbecame increasingly abusive and controlling. Thelma remained with him\ndespite it hindering her career prospects by associating with a known\ndrug dealer. In September 1982, they had a child together, and the\nfollowing year they married.</p>\n<p>In January 1986, after harassment from authorities, Jackie forced\nThelma to move to Los Angeles for her safety, but he did not go with\nher. As his business began to decline and her savings ran low, Thelma\ndecided to enter the drug trade herself. As a woman and mother, she\nmanaged to stay under the radar. Jackie hired a woman named Antie to\nhandle his Los Angeles operations, who mentored Thelma in aspects of the\ndrug business that Jackie had never shared. In August 1986, Jackie was\nmurdered in Philadelphia, and Thelma took over his business and Antie\nbecame her right-hand woman. While Jackie had only dealt in heroin,\nThelma diversified the business and expanded his empire. She later\nbecame romantically involved with the leader of the Junior Black Mafia,\nwhich drew her back to Philadelphia. However, their relationship ended\nwhen he was arrested in 1989. After Antie was killed in August 1991, and\nas law enforcement began paying closer attention, Thelma made the\ndecision to quietly exit the drug world. Remarkably, she was never\narrested or seriously suspected.</p>"}, {"name": "Perrion Roberts", "countryCode": "US", "country": "United States", "pathway": "Inherited power from male kin", "leaderCount": 1, "body": "<p>Perrion Roberts was born in 1964 or 1965 in Huntsville, Alabama and\nshe attended Alabama Agricultural and Mechanical University. She was\nfirst introduced to the drug trade by her boyfriend, who sold marijuana.\nWhen he was arrested, she took over his operation. Three years later,\nher cousin involved her in his cocaine business; after his death, she\nassumed control of his much larger organization. Her gender, young age,\nand college education helped her stay under the radar until 1992, when\nshe was arrested for murder. She was ultimately acquitted and upon her\nrelease she expanded her operations. Her drug empire came to a halt in\n2004, when she was arrested. According to her own accounts, she ran the\noperation from 1984 to 2004, making her one of the longest-reigning drug\ndealers in the country. She was sentenced to 21 years in prison but\nserved only two. In 2014, she received a full pardon from the state of\nAlabama. Since then, she has worked extensively with the NAACP and\nUnited Way on criminal justice reform. Roberts also became the sole\nowner of Perri Auto Sales, making her the first woman of color in the\nUnited States to own a certified used car dealership.</p>"}, {"name": "María Angela Di Trapani", "countryCode": "IT", "country": "Italy", "pathway": "Inherited power from male kin", "leaderCount": 1, "body": "<p>Maria Angela Di Trapani, daughter of widely known mafia boss in the\nSicilian Casa Nostra, Ciccio Di Tripani, was born in 1967 or 1978. By\nmarrying Salvatore “Salvino Eyes of Ice” Madonia, leader of the\nResuttana Clan, she further strengthened her place within Sicily’s Cosa\nNostra. When Madonia was arrested in 1991 for murder, Di Tripani served\nas her messenger and allowed him to continue to exert power over the\norganization. In 2000, while Madonia was in prison, they conceived a\nchild. Di Trapani herself was arrested in 2008 and spent seven years in\nprison for relaying her husband’s commands. After her release in 2015,\nshe returned to mafia activities, and upon the death of Salvatore “Toto”\nRiina in September 2017, she briefly took on a leadership role within\nthe Resuttana clan. However, her time in power was short-lived, as she\nwas arrested again in December 2017.</p>"}, {"name": "Dung Hà", "countryCode": "VN", "country": "Vietnam", "pathway": "Inherited power from male kin", "leaderCount": 1, "body": "<p>Born in 1965 in Hài Phòng, Vũ Thị Hoàng Dung, or Dung Hà for short,\ndropped out of school early, following her older brothers into a life of\ncrime, initially as a pickpocket and robber. Her first arrest came in\n1986 after robbing a pedestrian, resulting in a 12-month prison\nsentence. Upon her release, she became increasingly entrenched in Hài\nPhòng’s criminal underworld, particularly in Cho Sat, a neighborhood\nnotorious for its mafia activity. In her 20s, Dung Hà began a\nrelationship with one of the city’s most infamous mob bosses, Hùng Cõm,\nand together they ran illegal casinos. Around 1990, Hùng Cõm was\narrested, and following a failed prison break orchestrated by Dung Hà,\nhe was ultimately executed. After his death, Dung Hà took over his\noperations. Further defying social norms, she began openly pursuing\nromantic relationships with women. In 1995, Dung Hà was arrested again\nand served a three-year prison sentence. After her release, increasing\npolice scrutiny in Hài Phòng led her to expand her criminal enterprise\nto Saigon. There, she clashed with Năm Cam, a powerful underworld figure\nwho tried to bring her under his control. Dung Hà resisted, and they\nbecame rivals. In 2000, Năm Cam ordered her assassination, and she was\nkilled by one of his followers.Dung Hà’s death was a significant event,\ndrawing widespread attention and a large turnout at her funeral, as she\nhad gathered a substantial following in Vietnam.</p>"}, {"name": "Simone Jasmin", "countryCode": "ZA", "country": "South Africa", "pathway": "Inherited power from male kin", "leaderCount": 1, "body": "<p>Simone Jasmin, also known as “Moni” or “Queen of the South,” earned\nher nickname as a nod to the popular Mexican soap opera, whose\nprotagonist’s criminal journey is said to mirror Jasmin’s own. Not much\nis known about her early years, except that she was born into poverty in\n1990 or 1991 in South Africa. She became involved in the drug trade\nthrough a romantic relationship with a drug dealer from a Wentworth gang\nin South Durban. After his murder, she took over the business herself.\nJasmin later dated three other gang members, all of whom were also\nkilled in drug-related violence, earning her yet another nickname,“Black\nWidow.” Fond of her “Queen of the South” nickname, Jasmin named her\ngroup “The Cartel,” also a nod to Mexican organized crime and a TV\nseries with the same name. According to police sources, unlike her\nlovers, she wasn’t content with mere distribution—she aimed to dominate\nthe drug trade. Under her leadership, The Cartel expanded its operations\nbeyond south Durban to Umlazi, Lamontville, and KwaMashu. Jasmin built a\nreputation as a Robin Hood figure by supporting the local community,\nwhich earned her their respect. However, their respect also stemmed from\nfear. Anyone who questioned her authority was killed, and the same fate\nwas met by members of her rival gangs. She was arrested in September\n2020 along with several members of her cartel. Although granted bail\nunder unclear circumstances, she was murdered shortly thereafter. Her\nfuneral was attended by hundreds from the communities she had\nsupported.</p>"}, {"name": "Fumiko Taoka", "countryCode": "JP", "country": "Japan", "pathway": "Inherited power from male kin", "leaderCount": 1, "body": "<p>Fumiko Taoka was born Fumiko Fukuyama in 1920 in the Hyōgo Prefecture\nof Japan to parents who owned a coffee shop. In the early 1930s, she\nallegedly caught the eye of Kazuo Taoka while working at the coffee\nshop. At the time, Kazuo was an apprentice in the Yamaguchi-gumi, a\nyakuza group. Upon learning about her relationship with Kazuo, Fumiko’s\nfather allegedly disowned Fumiko and she began living with Kazuo.\nHowever, Kazuo was imprisoned from 1936 to 1943. Kazuo and Fumiko\nmarried in 1944. Kazuo quickly rose ranks and in 1946 became the leader\n(<em>oyabun</em>) of the Yamaguchi-gumi, where Fumiko took on the role\nof <em>Anesan</em>, or the wife of the boss who takes on a supporting\nrole. Under Kazuo, the Yamaguchi-gumi grew from a few dozen members to\nthe most powerful yakuza group with over 10,000 by the mid-1960s. During\nthis time, Fumiko became actively involved in many of Kazuo’s business\ndealings, including business negotiations and finances. In 1981, Kazuo\ndied of a heart attack without a clear successor. Reports claim that the\nYamaguchi-gumi were in disarray, leading the police to crack down on the\norganization and arrest many top leaders, internal squabbles to break\nout, and rivals to begin contesting their turf. In 1982, police learned\nthat upon Kazuo’s death, the Yamaguchi-gumi bosses had decided that\nFumiko would be the temporary head of the organization until they could\nagree on a male successor. Thus, Fumiko became the leader of the largest\ncriminal syndicate in Japan. Fumiko rose to the challenge, arranging a\ngroup of elite bosses to deal directly with the challenges the group\nfaced. Over the next three years, Fumiko led the Yamaguchi-gumi with\neffectiveness: membership reached historical highs, the number of gangs\nwithin the organization reached historical highs, and business boomed.\nIn 1984, the Yamaguchi-gumi bosses finally voted on a male successor, a\nperson Fumiko had endorsed, ending Fumiko’s three year reign. In 1986,\nFumiko passed away due to a liver ailment.</p>"}, {"name": "Isel Suñiga", "countryCode": "GT", "country": "Guatemala", "pathway": "Inherited power from male kin", "leaderCount": 1, "body": "<p>Isel Suñiga was born in Ayutla, Guatemala, in 1992 or 1993. Her\nfather, Erik Salvador Suñiga Rodríguez, served as mayor of Ayutla from\n2008 to 2019 and was also a pastor at a local church. However, he\nsimultaneously led a drug-trafficking organization known as “Los\nPochos”—a name derived from his own nickname—that smuggled narcotics to\nthe United States. During her teenage years and early adulthood, Isel\ngained recognition through various beauty pageants, eventually winning\nthe title of Miss Universe Guatemala in 2017. When her father turned\nhimself into the authorities in 2019 under unclear circumstances, Isel\nassumed control of his organization. She married Juan José Morales\nCifuentes, a high-ranking and notoriously ruthless figure within the\ngroup, whom some sources identify as a high-ranking leader. The couple\nhas two children. Shortly thereafter, she entered politics, following in\nher father’s footsteps yet again to become mayor of her hometown in June\n2023. Her husband was arrested by Guatemalan authorities in December\n2023 but Isel appears to maintain control of Los Pochos to this day.</p>"}, {"name": "Olive Yang", "countryCode": "MM", "country": "Myanmar", "pathway": "Inherited power from male kin", "leaderCount": 1, "body": "<p>Yang Kin-Sue, commonly known as “Olive Yang”, was born in 1927 into a\nroyal family of what was then the semiautonomous Shan State of Kokang,\npart of the British colony of Burma (now Myanmar). The region was a\nprolific opium producer and his family served as the only legal\nwholesale dealer in the area. Farmers growing opium were required to\ngive one-fifth of their harvest to the family, and any merchant wishing\nto trade needed the Yang family’s official seal of approval. He was one\nof 11 children. At the age of five, he nearly shot a visiting dignitary,\nfor which his father rewarded him with a gun. According to his\nrelatives, Olive refused to wear girls’ clothes from an early age and\nrejected traditional Chinese practices like foot binding. On one\noccasion, he reportedly pulled a gun on his mother and servants when\nthey tried to bind his feet. In the convent school his family sent him\nto, the nuns named him “Olive” after a virgin saint. However, he did not\nlive up to his namesake’s reputation; he cut his hair short, pulled guns\non anyone who crossed him, and was even rumored to have shot a\nclassmate, which led to his expulsion. By the age of 18, he had fallen\nin love with a girl. His parents, in an effort to conform him to\nsocietal expectations, arranged his marriage to a younger cousin.\nLegally, he was required to produce an heir for him, and failure to do\nso would result in his family paying his husband nine times his dowry.\nHis mother even attempted to bribe him with guns to ensure compliance.\nOlive eventually fulfilled the obligation, became pregnant, but escaped\nshortly after giving birth, leaving his child to be raised by relatives.\nDetermined to live on his own terms, he shaved his head, bound his\nbreasts, and resolved to become a gangster.</p>\n<p>In 1942, during World War II, imperial Japan occupied much of Burma\nbut left Kokang untouched. Olive’s father organized a self-defense force\nto resist any invasion, drawing the attention of the United States. The\nOffice of Strategic Services (OSS), the precursor to the CIA, provided\nthe Yang family with weapons and support. After Japan’s surrender in\n1945, the British regained control of Burma. In 1948, Kokang declared\nindependence. Following the death of Olive’s father in 1949, his elder\nbrother, Edward, assumed leadership of the dynasty and allied with the\nKuomintang (KMT) Nationalists. Known as the “secret army,” the KMT\nfinanced its fight against Mao’s Red Army through the opium trade. Their\nenemies included the Communist Party of Burma, who also sought control\nof the lucrative drug trade. The United States, eager to combat\ncommunism, began supporting the KMT, providing training, technology, and\neven a front company to facilitate opium trafficking.</p>\n<p>While Edward handled diplomatic matters, Olive took charge of the\nKokang self-defense force, which came to be known as “Olive’s Boys.” He\ninsisted his men call him “Uncle Olive” and use he/him pronouns for him.\nHis brother Francis once remarked, “She’s a better man than us.” By the\nage of 25, Olive was leading around 1,000 soldiers who guarded opium\ncaravans and trafficked drugs across the Thai border. The region would\nlater become a major hub for heroin destined for the United States and\nEurope. It was said that Olive never killed anyone directly but instead\nordered executions.</p>\n<p>In 1953, Olive collaborated with the Burmese government to expel the\nKMT from Kokang, as he disapproved of their treatment of ethnic Chinese.\nHowever, he soon switched sides again, angering the government. He\nworked with the KMT to transport opium to Thailand and acted as an\ninformant for the Americans, providing intelligence on Chinese military\npositions. His fight against Burmese communists intensified during this\nperiod. That same year, he was arrested by the Burmese government for\nhis collaboration with the KMT. The U.S.’s involvement in the secret\narmy was exposed, prompting the United Nations to pressure the U.S. to\nwithdraw from Kokang. Olive was released in 1957 and began a\nrelationship with a famous actress, once again defying societal\nnorms.</p>\n<p>In 1955, Burmese communist forces overran Kokang, forcing Olive into\nexile. He moved south and opened new opium routes to Thailand. Despite\nhis exile, his operations remained centered in Kokang, and he handed\nover control to his trusted lieutenant, Lo Hsing Han.</p>\n<p>In 1963, Olive was arrested again, marking the end of his criminal\ncareer and his relationship with the actress. He spent six years in\nprison, where he was reportedly tortured. After his release, Olive\nwithdrew from public life but retained significant influence in the\nunderworld. In 1989, the Burmese government sought his assistance in\npeace negotiations with rebel groups, recognizing his stature among\nKokang and Shan communities. In his later years, he lived quietly under\nthe care of his stepson and former militia members. He passed away in\n2017, leaving behind a legacy as one of the most enigmatic figures in\nSoutheast Asia’s opium trade.</p>"}, {"name": "Herlinda Bobadilla", "countryCode": "HN", "country": "Honduras", "pathway": "Inherited power from male kin", "leaderCount": 1, "body": "<p>Herlinda Bobadilla, also known as “Erlina Montés Bobadilla” or “La\nChinda,” was born in Macuelizo, Honduras in 1961 but grew up in Colón, a\nkey drug trafficking corridor. She married Alejandro Montés Alvarenga\nand had six children. In 2004, her relative and then-leader of the\nMontés Bobadilla Clan, Alex Adán Montés Bobadilla, recruited her into\nthe organization as he sought support following the death of its\nprevious leader, Pedro García Montés. The clan, with ties to Colombian\nand Mexican cartels, had long been involved in drug trafficking. Three\nof Bobadilla’s children became heavily involved in the business. Upon\nAlex’s death in prison, Noé Montés Bobadilla, her third son, assumed\ncontrol of the organization. However, his leadership was short-lived as\nhe was arrested in 2017 and extradited to the United States. At that\npoint, Bobadilla and her two other sons, Tito and José Carlos, assumed\nleadership. Some sources claim Tito and José Carlos were second in\ncommand, while Herlinda was the leader. Under their leadership, the\norganization expanded significantly, shifting from mere trafficking to\ncocaine production as well, and becoming one of Central America’s\nlargest drug trafficking organizations. In 2021, the U.S. government\noffered a 5 million reward for their capture. In May 2022, authorities\nlaunched an operation to arrest them. José Carlos managed to escape, but\nTito was killed and Herlinda was taken into custody. Juan Carlos remains\nleader to this day.</p>"}, {"name": "Karem Lizbeth Yépez Ortiz", "countryCode": "MX", "country": "Mexico", "pathway": "Inherited power from male kin", "leaderCount": 1, "body": "<p>Karem Lizbeth Yépez Ortiz, known as “La Señora” and “La Patrona,” was\nborn in Santa Rosa de Lima, Guanajuato into a family that would go on to\nbuild a long criminal legacy. Her brother, José Antonio Yépez Ortiz “El\nMarro” is the former and most recognized leader of the Santa Rosa de\nLima Cartel (CSRL), and is credited with bringing the organization to\nprominence and waging a war against the Cartel Jalisco Nueva Generación\n(CJNG). Karem, along with her parents and another brother, were also\ninvolved in the organization. In January 2020, Karem was attacked at her\nwedding by CJNG members, who killed her newlywed husband. Rumors\ncirculated that she had also been killed. José Antonio was detained in\nAugust of 2020, and the organization took a major blow. Conflict for\ncontrol of the organization ensued, with sources claiming the\norganization fragmented and lost many members to the CJNG. After the\nmass defection, leadership was reorganized; the cartel adopted a\ndecentralized structure where four municipal leaders had greater\nautonomy to run their operations in their territory. Karem and her\nbrother Juan Rodolfo “El Rudy” were among these suspected leaders. In\nthe following years, the leaders began getting arrested, with Juan\nRodolfo being the last one in November 2022. At that point, Karem became\nthe sole and undisputed leader of the organization. Some accounts\nmention that Juan Rodolfo was the maximum leader before her, and others\nthat Karem assumed leadership immediately after José Antonio. Therefore,\nKarem rose above her father in leadership, and potentially her brother\nJuan Rodolfo too. As leader, she has been credited with coordinating a\nlong list of violent and ruthless acts, including the murder of 11\ninnocent teenagers and young adults in a Christmas celebration. She is\nclaimed to be an efficient leader. She has become a primary target of\nthe Guanajuato government, and to this day she remains leader of the\nCSRL. Other women related to José Antonio, such as his wife and\nmistresses, hold high-ranking errositions in the CSRL. His wife, Elsa\nMarisol Martínez Prieto, “La Güera,” is currently head of finances.</p>"}, {"name": "María Licciardi", "countryCode": "IT", "country": "Italy", "pathway": "Co-founded, then inherited leadership", "leaderCount": 1, "body": "<p>Maria Licciardi, or “La Piccolina” (“<em>the little one</em>”), a\nnickname that references her short height, was born in 1971 or 1972 in\nNaples, Italy. While little is known about her early life, reliable\nsources indicate that she co-founded the Licciardi organization with her\nbrother Gennaro, with the organization being affiliated with the\npowerful Camorra. Gennaro initially led the organization, while Maria\nmanaged its finances and oversaw the well-being of families with\ndetained members, a strategy designed to keep followers loyal and\nprevent deserters or informants who might cooperate with authorities and\nreveal the group’s plans and operations. Known for avoiding direct\nconflict, the Licciardi group has maintained discretion and anonymity,\nwith no documented feuds with rival groups. After Gennaro’s death in\n1994, Maria took over leadership alongside her siblings Vincenzo and\nPietro. Although she temporarily lost control due to her 2001 arrest,\nupon her release in 2011, she emerged as the sole leader of the\norganization. Furthermore, Italy’s interior ministry has referred to her\nas the “strategic leader” of the so-called “Secondigliano Alliance,” a\ncoalition of families believed to dominate a significant portion of\norganized crime in Naples. Maria was arrested again in August 2021 while\nen route to visit her daughter in Spain. She is currently serving her 12\nyear sentence.</p>"}, {"name": "Ignacia Jasso", "countryCode": "MX", "country": "Mexico", "pathway": "Co-founded, then inherited leadership", "leaderCount": 1, "body": "<p>Ignacia Jasso, “La Viuda de González” or “La Nacha,” was born in 1900\nin the state of Durango, Mexico, but moved to Ciudad Juarez on the\nUS-Mexico border during the 1910s. In 1921, she married Pablo González,\nwho worked for a criminal organization led by Enrique Fernández that,\namong other activities, distributed drugs. With her husband’s\nprotection, Jasso entered the underworld by organizing petty crime, but\nsoon began dealing drugs that she bought from Enrique through her\nhusband. By the late 1920s, her and her husband established their own\norganization to deal drugs and began to take over drug distribution in\nthe city. According to some accounts, Jasso was the one who controlled\nthe finances of the business. Some sources claim that Pablo was\nboisterous, bellicose, and lavish, while Jasso was discrete. In 1930,\nJasso’s husband, Pablo, was killed during a shootout with police\nofficers. According to one historical account, “[w]ithout her husband’s\nthreatening presence, the thirty-year-old widow was forced to turn to\nother means of maintaining and protecting her business” (Smith 195).\nJasso not only maintained the business but by the 1940s she controlled\nmuch of the drug trade in Ciudad Juarez as well as the sex trade. Jasso\nalso recruited many family members into her organization, including her\nthree sons, and relied heavily on women employees. Jasso was allegedly\nextremely business-savvy and skilled in negotiating with individuals in\nlaw enforcement and the judiciary. Jasso ran the city’s drug trade for\ndecades, with some brief periods in jail. During the 1960s and into the\n1970s, Jasso gradually let her children and grandchildren take over the\nbusiness. In 1982, she passed away at her home from natural causes.</p>"}, {"name": "María Serraino", "countryCode": "IT", "country": "Italy", "pathway": "Founded own organization", "leaderCount": 1, "body": "<p>Maria Serraino, commonly known as “Grandma Heroine,” “Momma Heroine,”\nor simply, “La Signora” (“<em>The Lady</em>”) was born in 1931 in Reggio\nCalabria, Italy to a ‘Ndrangheta clan. In the 1960s, she moved to Milan\nwith her husband and children, where she began her involvement in\nillicit activities, initially smuggling cigarettes and stolen goods. By\nthe 1970s, her criminal activities shifted to drug and weapons\ntrafficking and her organization became known as the Serraino-Di Giovine\nclan. Her older sons, Antonio and Emilio, were involved in the stolen\ncar business and used their connections with foreign criminals to expand\nMaria’s drug operations. Even though her son Emilio managed the main\ndrug trafficking routes and is often mistaken as leader, according to\nmost accounts, Maria was always the utmost leader. Testimony by her\ndaughter Rita, who was also involved in the business since a very early\nage, claimed that Maria often made Emilio feel like the boss, possibly\nto avoid altercations, but that she ultimately made the decisions\nherself. During the time, she was said to have suffered domestic\nviolence from her husband. The organization became targeted by the\nauthorities starting in 1993. In a span of 2 years, around 180 members\nwere arrested and ultimately, in September of 1997, Serraino was\nsentenced to life imprisonment for Mafia association and murder.</p>"}, {"name": "Angie Sanclemente Valencia", "countryCode": "AR", "country": "Argentina", "pathway": "Founded own organization", "leaderCount": 1, "body": "<p>Angie Sanclemente Valencia, “the cocaine queen” or “narco-model,” was\nborn on May 25, 1979, in Bogotá, Colombia. At a young age she began\npursuing a modeling and acting career, and in 2001 relocated to Mexico\nto pursue this career. Sanclemente met Nicolas Gualco, an Argentinian\nmodel, in 2009 and become romantically involved with him. Together, they\nestablished a drug trafficking organization that smuggled narcotics to\nEurope from Argentina through Mexico. Sanclemente played a central role,\nacting as the key intermediary between drug producers in the Americas\nand dealers in Europe. In 2009, one of her mules was arrested, leading\nto an investigation that incriminated Sanclemente. Fearing abuse in\nprison, her lawyer sought an exemption from incarceration, but the\nrequest was denied. Sanclemente evaded capture until she was arrested in\nFebruary 2010 for trafficking heroin and cocaine internationally and\nserved 3 years in prison.</p>"}, {"name": "Cheng Chui Ping", "countryCode": "US", "country": "United States", "pathway": "Founded own organization", "leaderCount": 1, "body": "<p>Cheng Chui Ping was born in Fujian, China in 1949, and was known as\n“The Mother of all Snakeheads” (criminal slang for smuggler) to her\nassociates and followers, and “Sister Ping” in Chinatown, New York City.\nAt the age of 15, her father immigrated to the United States, where he\nworked low-paying jobs and sent his earnings back to support his family\nin China. After being deported back to China in 1977, he became involved\nin the human smuggling business, which would later influence his\ndaughter’s path. In 1981, Cheng Chui Ping immigrated to the United\nStates with her husband and four children. Shortly afterward, she began\nher smuggling operation based in Manhattan, New York City, which quickly\nflourished. Over the years, she facilitated the smuggling of\napproximately 3,000 immigrants from China, often under inhumane\nconditions, amassing millions of dollars in the process. She was\nconsidered reliable and efficient in the business, and to ensure that\ndebts were paid, she frequently resorted to violent methods. However,\nshe was known to forgive fees for those who were caught by immigration\nofficials, and pay for the burials of those who died in the process,\nearning her admiration among immigrants. She invested her earnings into\nrunning a legitimate travel agency and real estate company, where many\nof her clients were the very immigrants she had smuggled into the\ncountry. Facing persecution, she fled back to China in 1994 but was\narrested and extradited to the U.S. in July 2000. Cheng Chui Ping died\nof cancer in prison in 2014.</p>"}, {"name": "Delia Patricia Buendía Gutiérrez", "countryCode": "MX", "country": "Mexico", "pathway": "Founded own organization", "leaderCount": 1, "body": "<p>Delia Patricia Buendía Gutiérrez, better known as “Ma Baker,” was\nborn in the neighborhood of Tepito, in Mexico City in 1957 to a family\ninvolved in drug trafficking. Aside from being a cashier and cleaner\nwhen she was young, Buendía Gutiérrez was also a local drug dealer\nduring the 1980s and 1990s. She was married and had three children, but\ngot divorced and became involved with a local merchant who also dealt\ndrugs. After problems with other drug dealers in Tepito, she was forced\nto relocate to Nezahualcóyotl, State of México. In 1998, Buendía\nGutiérrez began collaborating with Joaquín Quintero, who was already\norganizing drug stores in Nezahualcóyotl. According to some accounts,\nthe growth of Buendía Gutiérrez’s business and organization stem from\nher collaboration with Quintero. These accounts claim that his\nadministrative vision laid the foundation for a larger organization\nbuilt on her control of the drug stores. Her organization soon became\nknown as “Cartel del Neza,” which quickly flourished and established an\nextensive drug distribution networks throughout Central Mexico. Buendía\nrecruited her three daughters as her distributors and later recruited\ntheir husbands. As her reach continued to grow, she struck an alliance\nwith the Tijuana Cartel. She is often described as an avid, but cold and\nruthless leader. Her downfall came after ordering several high-profile\nassassinations, leading to her arrest in August 2002. Her arrest led to\nthe weakening and eventual dissolution of her cartel.</p>"}, {"name": "María Dolores Estévez Zuleta", "countryCode": "MX", "country": "Mexico", "pathway": "Founded own organization", "leaderCount": 1, "body": "<p>María Dolores Estévez Zuleta, better known as “Lola la Chata,” was\nborn in 1906 in the impoverished and dangerous neighborhood of La\nMerced, Mexico City. Estévez Zuleta began by helping her mother at a\nfood stall in an informal market where they eventually expanded to\ninclude marijuana and morphine sales. By thirteen, she had became her\nmother’s drug mule since she attracted less suspicion. Estévez Zuleta’s\ninvolvement in the trade expanded when she met Carlos Ruiz Urquizo, a\ndrug trafficker from Ciudad Juarez, Mexico. Estévez Zuleta traveled to\nCiudad Juárez—a key crossing point for illicit trade in alcohol and\nnarcotics—where she honed her expertise in transnational trafficking\nwith the help of Ruiz Urquizo and his trafficking network. She gave\nbirth to two daughters, who later followed in her footsteps. Upon\nreturning to Mexico City, she set up a stall selling cheap goods as a\nfront for her narcotics business. In the 1920s, she began building her\nempire, trafficking marijuana, morphine, and heroin. Although she\noperated under the radar for much of that decade, by the 1930s, her\nsuccess caught the attention of officials in both the U.S. and Mexico.\nEstévez Zuleta advanced her empire through one of the few avenues\navailable to women at the time: leveraging familial and sexual\nconnections. She married former police officer Enrique Jaramillo, whose\nconnections within the police and political circles proved invaluable to\nher operations. Between 1934 and 1945, she was imprisoned seven times,\nbut even in jail, her influence remained strong. Her conditions were\nluxurious—she had servants and even built a hotel and an airstrip to\naccommodate family and conjugal visits. In 1957, she was arrested at her\nhome for the final time and was described in the media as a “famous\ninternational narcotics trafficker.” Estévez Zuleta passed away in\nSeptember 1959 in prison from coronary failure, though rumors suggested\na heroin overdose. Around 500 admirers attended her funeral.</p>"}, {"name": "Luz Irene Fajardo Campos", "countryCode": "MX", "country": "Mexico", "pathway": "Founded own organization", "leaderCount": 1, "body": "<p>Luz Irene Fajardo Campos, also known as “La Comadre,” “La Madrina,”\n“La Donna,” and most notably “The Female Chapo,” was born in 1964 or\n1963 and grew up with her grandparents in the mountainous region of\nCosalá, Sinaloa, a hub for poppy and marijuana farming. She had a\nviolent upbringing: she was kidnapped and raped as a child, and was\nforced to marry a man who abused her physically and psychologically.\nDespite these hardships, she had access to education and studied law at\nuniversity. She eventually abandoned her husband and established her\ndrug trafficking operationto sustain her four children. She managed her\noperation since around 2010, maintaining close ties with Joaquin Guzmán\nLoera “El Chapo” and the Sinaloa Cartel, which enabled her to establish\nan international organizations with connections in Colombia, Ecuador,\nPanama, and Honduras, alongside strong networks throughout Mexico and\nthe United States. Fajardo Campos was recognized as a highly intelligent\nleader. Despite the claims of her being “El Chapo’s” female equivalent,\nunlike him, she was a calm and collected leader and did not resort to\nviolent tactics. Her responsibilities included cross-country\nmanufacturing and distribution, acquiring jets for drug transport,\nmanaging a methamphetamine lab, and coordinating a smuggling network\nthat stretched from Arizona to Mississippi. She involved her daughter\nArlene and her three sons in the business. She was arrested and\nextradited to the United States in 2017, where she was found guilty of\ntrafficking thousands of kilograms of cocaine and methamphetamine,\nresulting in a 22-year prison sentence. Two of Fajardo’s children were\nmurdered, allegedly by the Sinaloa Cartel in the attempt of keeping\nFajardo quiet upon her extradition.</p>"}, {"name": "Griselda Blanco Restrepo", "countryCode": "CO", "country": "Colombia", "pathway": "Founded own organization", "leaderCount": 1, "body": "<p>Griselda Blanco Restrepo was born into a poor family in 1943 in Santa\nMarta, a coastal city in Colombia. She later moved to Medellín in 1955,\nand as she came of age during a period of significant violence in the\ncountry. She launched her criminal career at the young age of 11, when\nshe allegedly kidnapped a boy and killed him. At thirteen she was raped\nby her mother’s boyfriend, driving her to leave her childhood home and\nturn to prostitution. She eventually befriended Carlos Trujillo, a drug\ntrafficker and document forger, with whom she built a criminal human\nsmuggling network. They married, and he fathered her first three\nchildren. Trujillo died in the mid-1970s, with some speculating that\nBlanco was behind his death. With her second husband, Luis Alberto\nBravo, she moved to New York City and established her cocaine business,\nleveraging the human smuggling network she had developed with Trujillo\nto supply her mules. They worked alongside influential figures such José\nAntonio Cabrera Sarmiento and the Ochoa Vásquez brothers of the Medellín\nCartel. Blanco Restrepo also recruited attractive young women to\ntransport cocaine from Colombia and distribute it in New York City. She\nand Bravo’s operation was described as the ’biggest Colombian narcotics\norganization’ in the U.S. Their relationship deteriorated and ended with\nBlanco shooting and killing him. She later married Darío Sepúlveda, with\nwhom she had another child, and expanded her operations into Miami,\nigniting violent confrontations with her competitors. She ultimately\nkilled him as well, which earned her the nickname of “Black Widow,” an\nallusion for the murder of her three husbands. She is often described as\nincredibly violent and ruthless, not afraid of using violence as a means\nof domination. She was arrested in Irvine, California in 1985, where she\nwas sentenced to 15 years in prison. She was later deported to Colombia\nin 2004, where she was shot and killed in September 2012. Blanco was\nknown for using murder as a badge of honor and for preserving her\nstatus.</p>"}, {"name": "Yang Fenglan", "countryCode": "TZ", "country": "Tanzania", "pathway": "Founded own organization", "leaderCount": 1, "body": "<p>Yang Fenglan, known as “the Ivory Queen,” was born in Beijing in 1949\nor 1950 and moved to Tanzania in the early 1970s. Fenglan was one of the\nfirst Chinese students to graduate in Swahili and initially worked as a\ntranslator. After a brief return to China in the mid-1970s, she went\nback to Tanzania and, by 1998, had established a restaurant and an\ninvestment company. In 2012, Fenglan was appointed secretary-general of\nthe Tanzania-China Business Council. She was also a key figure in the\nillicit side of the China and Tanzania’s relationship—the ivory\ntrade—acting as an intermediary between African poachers and Chinese\nbuyers. Her involvement in this trade played a significant role in the\ndrastic decline of Tanzania’s elephant population. Yang was arrested in\n2015, along with two Tanzanian men, Salivius Matembo and Manase\nPhilemon, whom she was accused of leading a criminal organization with.\nShe was charged with smuggling over 700 elephant tusks, valued at over\none million euros, to East Asia. All three were convicted and sentenced\nto 15 years in prison. Reflecting on her arrest, an elephant protection\nactivist noted, “When we think of a kingpin, we think of someone like Al\nCapone, but this was someone who mingled with the country’s elite and\nblended in” (BBC, 2016).</p>"}, {"name": "María Dolores M.G.", "countryCode": "ES", "country": "Spain", "pathway": "Founded own organization", "leaderCount": 1, "body": "<p>María Dolores M.G., known as “La Loles,” was born in 1958. Although\ndetails about her early life are limited, she later founded “El Clan de\nla Loles,” recognized as the longest-standing criminal organization in\nMurcia, Spain. This organization operates as a family business, with her\nentire family involved in its activities, collectively controlling drug\ntrafficking in the region. Between 1988 and 2004, “La Loles” was\narrested six times and served time in prison. After her release,\nauthorities continued their efforts to incarcerate her, and in 2023, she\nfaced an additional two-year prison sentence after reaching an agreement\nwith authorities.</p>"}, {"name": "Jemeker Thompson-Hairston", "countryCode": "US", "country": "United States", "pathway": "Founded own organization", "leaderCount": 1, "body": "<p>Jemeker Thompson-Hairston, “The Queen of Crack,” was born in south\nLos Angeles area in 1962 to a poor family. During high school, her\nboyfriend, Anthony Mosley, introduced her to marijuana dealing and the\nluxurious lifestyle she had always craved. Shortly after, she began\nhelping him with the business. However, it was Thompson-Hairston who\nestablished a connection with a supplier that offered a much more\nlucrative opportunity: cocaine—a market her boyfriend was hesitant to\nenter. Undeterred by his reluctance, she ventured into the cocaine trade\nherself. In 1980, Thompson-Hairston married Anthony. To meet the growing\ndemands of her clients, she diversified her operations to include crack\ncocaine. She managed to evade law enforcement by employing a network of\npeople to sell drugs on her behalf, keeping her hands clean from direct\ntransactions. In 1982, she gave birth to her first child, and her\nhusband urged her to step back from the business, prompting her to scale\ndown her activities. However, her luxurious lifestyle had already\nattracted the attention of the DEA. In 1984, after her husband’s murder,\nauthorities believed that Thompson-Hairston could not sustain her\nbusiness in a male-dominated industry without him. Contrary to their\nexpectations, her operation flourished over the next eight years.\nThompson-Hairston emerged as one of the most powerful women in drug\ntrafficking, securing deals with notorious Colombian traffickers and\nbecoming a primary supplier of crack, marijuana, and cocaine in the\nUnited States. She also established a wig enterprise that not only\nserved as a front for laundering her money but was profitable in its own\nright. In the 1990s, Thompson-Hairston once again caught the attention\nof the DEA, leading to the arrest of Percy Bratton, her supplier and\nlover, who agreed to cooperate with authorities. Upon learning of this,\nThompson-Hairston went into hiding but was apprehended in 1992 and spent\n13 years in prison.</p>"}, {"name": "Mery Valencia de Ortiz", "countryCode": "CO", "country": "Colombia", "pathway": "Founded own organization", "leaderCount": 1, "body": "<p>Mery Valencia de Ortiz, known among her associates as “La Señora,”\nwas born in 1952 or 1953 in Cali, Colombia, and later became a\nnaturalized U.S. citizen. In the mid-1980s, she established a vast\ninternational cocaine network with an estimated wholesale value\nexceeding 180 million. Operating primarily from her home base in Cali,\nher stronghold extended to stash houses across Florida, Texas, and\nCalifornia, distributing drugs to major hubs like Miami, Los Angeles,\nand New York. Remarkably, most of the organization’s high-ranking\nmembers were women, many of whom involved their daughters in the\nbusiness. Her sister, Luz Dary Valencia-Castrillón, managed the\noperation’s money laundering from Colombia, while other family members,\nincluding her sister Ana María Valencia, her former sister-in-law\nJosephine Valencia, and her first cousin Flor Castaño, played key roles.\nFurthermore, Valencia was known for intimidating the men involved in the\norganization. Valencia had an affluent lifestyle, and ventured in the\nlegitimate market as well, operating a club and a beauty store in Cali,\nColombia. She fled the U.S. in 1992 and remained a fugitive until she\nwas arrested in 1997 along with 56 other members of her operation and\nwas extradited to the U.S. In 1999 she was sentenced to life in\nprison.</p>"}, {"name": "Shashikala Ramesh Patankar", "countryCode": "IN", "country": "India", "pathway": "Founded own organization", "leaderCount": 1, "body": "<p>Shashikala Ramesh Patankar, better known as “Baby Patankar,” was born\nin 1963 in Worli Koliwada, India into a modest family with five older\nbrothers. When she was young, Patankar was harassed, leading her\nbrothers to retaliate and kill one of her abusers. Her brothers were\nimprisoned, and one brother, after his release, took his own life. The\nemotional burden on her parents led to a decline in their well-being,\nand they eventually fell ill and passed away. At 15, Patankar married\nRamesh Patankar, an alcoholic taxi driver, and moved to the slum of\nSiddharth Nagar, where her brothers soon joined her. She faced\ndifficulties in securing stable employment, and became part of the\nfamily’s milk business, where she soon found out milk adulteration was\nmuch more profitable. This introduced her to the world of illicit\nactivities, ultimately leading her into drug dealing. She left her\nhusband soon after, quit the milk business, and expanded her drug\ndealing network throughout Siddharth Nagar. In the 2000s, she become a\npolice informant as a means to obscure her real involvement in illegal\nactivities. This role provided her with valuable connections,\nparticularly Dharmaraj Kalokhe, a senior police officer who became her\nromantic partner and helped her expand her criminal network. In 2001,\nshe was briefly arrested but managed to secure bail quickly.</p>\n<p>The decline of the Mumbai underworld due to public policies targeting\ngangs created an opportunity for Patankar to seize control of the\nmarket. The police reported that eight out of every ten drug addicts in\nMumbai were using drugs that could be traced back to her network. She\nalso expanded her operations to Maharashtra, Goa, Gujarat, and Delhi,\namong other cities. In Siddharth Nagar she relied on female drug\npeddlers who would disrobe and accuse police of molestation, a tactic\nalso used by Patankar. Patankar had a violent reputation, and her\ndownfall came after her lover, Dharmaraj Kalokhe, was arrested with a\nlarge quantity of drugs. An extensive search followed, leading to her\narrest on April 22, 2015.</p>"}, {"name": "Matilda Mary Devine", "countryCode": "AU", "country": "Australia", "pathway": "Founded own organization", "leaderCount": 1, "body": "<p>Matilda Mary “Tilly” Devine was born on September 8, 1900, in\nCamberwell, London into a working class family. Noted for her\nexceptional beauty from a young age, she entered the underworld as a\nprostitute as a teenager. She met her first husband, Jim Devine, through\nprostitution. He was an Australian serviceman who was stationed in\nLondon during the First World War. When the war ended, he returned to\nSydney, Australia, and Tilly joined him there. He was a thief, drug\ndealer, gunman, and pimp. He even managed Tilly’s continued involvement\nin the sex trade. It was around this time that the city formed its first\nwomen’s police force to target female offenders, leading to Tilly’s 79\narrests between 1921 and 1925 for offenses ranging from indecent\nlanguage to assault. In 1925, she was sentenced to two years in prison.\nUpon release, she did not go back to frontline work, but rather took\nadvantage of a legal loophole; while it was illegal for men to profit\nfrom earnings of sex workers, the same could not be said about women.\nShe was often described as highly violent, not solely depending on her\nmale associates for security but also exerting force herself when\nnecessary. By the late 1920s she was running 18 thriving brothels, and\ngender stereotypes kept her out of the authorities’ radar. At the time\nit was unfathomable that a woman could run an organized crime operation\nof such scale. However, she was not the only underworld queenpin; Kate\nLeigh was her rival, and their gangs clashed on multiple occasions,\nculminating in the infamous Kellet Street Brawl on August 8, 1929. After\nher arrest in 1930, she was released under the condition that she would\nreturn to England. However, she secretly made her way back to Australia\nand resumed her brothel business, amassing a fortune. Her husband, Jim,\nwas extremely abusive and even attempted to murder her. The couple\ndivorced in 1944. A year later, she remarried Eric Johns Parsons, though\ntheir relationship was tumultuous. Months before their wedding, Tilly\nfamously shot him in the leg following an argument. They remained\nmarried for 13 years until Parsons’ death. Throughout her criminal\ncareer, she was convicted on 204 occasions, but it was the Taxation\nDepartment that ultimately led to her downfall, pushing her to the brink\nof bankruptcy and forcing her to close her last brothel in 1968. Devine\npassed away two years later.</p>"}, {"name": "Kathleen Mary Josephine “Kate” Leigh", "countryCode": "AU", "country": "Australia", "pathway": "Founded own organization", "leaderCount": 1, "body": "<p>Kathleen Mary Josephine “Kate” Leigh was born on March 10, 1881, in\nDubbo, New South Wales, Australia. As the youngest of 8 children, she\nwas reportedly neglected by her family and was sent to a minors’\ninstitution when she was just 12 years old. In her teenage years, she\nled gang wars in the Surry Hills neighborhood, and by her early\ntwenties, she turned to prostitution to support a daughter born out of\nwedlock. At 21, she married James Leigh, a petty criminal and illegal\nbookmaker. Kate became his accomplice in various crimes, and in 1905, he\nwas imprisoned for an offense they committed together. His time in\nprison strained their relationship, and Kate began cultivating\nconnections with other men in the criminal world. Despite only thirteen\nminor convictions, mostly for prostitution (which she denied), Kate was\nknown for providing fake alibis and paying bail for the men associated\nwith her. In 1919, she took advantage of the Liquor Act, which closed\nlegal pubs at 6:00 p.m., and much like fellow criminal Tilly Devine, she\nexploited a legal loophole. While men were prohibited from profiting\nfrom bottled alcohol or selling it after hours, women were not barred\nfrom the same activities. Kate launched a lucrative illegal alcohol\ndistribution. She charged exorbitant prices for a variety of illegal\ngoods and services, including after-hours drinking establishments,\nillegal alcohol sales, gambling, prostitution, and, by the 1920s,\ncocaine. While she relied on the loyalty of male gangsters for\nprotection, Kate was also known to be skilled with a rifle. She\nsuccessfully avoided prosecution through her extensive contacts within\nthe police force. In September 1922, she married Edward Joseph Barry, a\ndrug dealer, and soon became a criminal entrepreneur. In 1930,\nauthorities raided her house and sentenced her to 12 months in prison\nfor drug possession. However, this setback did little to hinder her\ncriminal empire, which continued to flourish through the 1930s and\n1940s, generating an impressive fortune. She earned the nickname “Queen\nof the Underworld” and, much to her disdain, was also dubbed ”the worst\nwoman in Sydeny.” In response to this label, she once publicly declared,\n”I’m not the worst woman in Sydney, Tilly Devine is.” While the exact\ntiming of her separation from Barry remains unclear, Kate remarried in\n1950. The decline of her business is poorly documented, but by 1954, she\nwas declared bankrupt after failing to pay taxes. She died at the age of\n94, her fortune long gone.</p>"}, {"name": "Stephanie St. Clair", "countryCode": "US", "country": "United States", "pathway": "Founded own organization", "leaderCount": 1, "body": "<p>Stephanie St. Clair, also known as “Queenie,” “Madame Queen,” “Madame\nSt. Clair,” and “Queen of the Policy Rackets,” was born on December 24,\n1897, on the French Caribbean island of Guadeloupe. Alternatively, she\nmay have been born in France or Martinique, an island just south of\nGuadeloupe. St. Clair received a decent education before immigrating to\nNorth America in 1911, likely beginning her career as a domestic worker\nin Canada. Five years later, she moved to New York City and settled in\nHarlem, a thriving community for African-Americans at the time. Shortly\nafter her arrival, she established her criminal operation. She invested\n10,000 to establish a numbers racket — a form of illegal gambling —\nbecoming a “policy banker.” St. Clair ran this operation successfully in\npartnership with the infamous African-American mobster, Ellsworth\n“Bumpy” Johnson. Together, they amassed a significant fortune,\nparticularly since many black people at the time were excluded from\ntraditional banking systems. By the 1930s, the numbers racket had grown\nincreasingly popular among criminals, leading to widespread gang\nviolence. St. Clair confronted her rivals with force, solidifying her\nreputation in the underworld. In 1936, she married Sufi Abdul Hamid, a\ncontroversial, anti-Semitic activist nicknamed “Black Hitler.” Later in\nher life, St. Clair faced legal troubles. She was charged with\nattempting to murder Hamid in 1938 and was sentenced to 10 years in\nprison. Upon her release, she distanced herself from organized crime.\nSt. Clair spent her final years in seclusion, passing away in 1969 in a\npsychiatric facility, with no money to her name.</p>"}, {"name": "Xie Caiping", "countryCode": "CN", "country": "China", "pathway": "Founded own organization", "leaderCount": 1, "body": "<p>Known in the underworld as “Sister Xie,” Xie Caiping worked as a tax\nofficer in the Banan District, China, until 2000, when she left her job\nto establish a gambling operation. Over the next eight years, she opened\nillegal casinos across various districts, amassing a fortune. Although\nbriefly detained, she resumed and intensified her activities after\nrelease. Caiping assembled a group of over 20 individuals, mostly\nex-convicts, to conduct and protect her criminal enterprises. As the\nsister-in-law of politician Wen Qiang, she benefited from his\nprotection, which enabled her to expand her illegal empire and\naccumulate significant wealth. Her operation was well-structured and had\nmafia-like characteristics. Her gang frequently used violence to control\ngamblers and thwart law enforcement efforts. They also bribed officials\nto secure ongoing protection for their operations. Caiping’s lifestyle\nunderscores the massive wealth she accumulated from her illegal\nactivities: she owned luxury cars, expensive watches, and an arsenal\nthat included grenades and machine guns. She reportedly simultaneously\nmaintained relationships with 16 young men. In June 2009, an anti-crime\ncrackdown targeted her organization, leading to its eventual\ndismantling. Caiping was arrested in November 2009 on multiple charges,\nincluding operating illegal casinos and providing venues for drug use.\nShe was sentenced to 18 years in prison.</p>"}, {"name": "Fredericka Mandelbaum", "countryCode": "US", "country": "United States", "pathway": "Founded own organization", "leaderCount": 1, "body": "<p>Fredericka Mandelbaum was born in 1825 in Kassel, Germany to a Jewish\nfamily. In the face of rising antisemitism and economic hardship in\nGermany, Fredericka Mandelbaum and her husband emigrated to New York\nCity in 1850 where they sold goods. In the mid 1860s, Mandelbaum\nestablished her own legal store, which laid the foundations for what\nwould later become an illegal fencing operation. By the end of the\ndecade, the store had become the front for her criminal business. Even\nthough she commanded the respect of the men around her, she managed to\nmaintain a professional and feminine reputation, which she leveraged to\nexpand her criminal empire. Mandelbaum reportedly embraced the nurturing\nand mothering female stereotype by offering guidance and mentorship at\nher own crime school, allegedly one of the first of its kind. Doubling\nas a resource for her business, she recruited the high-achieving\nstudents to her criminal operation, many of whom had a fierce sense of\nloyalty toward her. The most famous of her students was Sophie Lyons,\nnotorious burglar and con-woman. Mandelbaum came to be known as “Marm,”\na nickname alluding to her high authority. Her operation grew from\ndealing in goods stolen by pickpockets and shoplifters to organizing and\nfinancing high-profile jewel heists and bank robberies throughout New\nYork and beyond. While she navigated gender norms strategically to rise\nto power, she was by no means immune to gendered criticisms. In 1884,\nafter being indicted on multiple counts of grand larceny, she was\ncriticized for abandoning both her children and protégés when she evaded\njustice by fleeing to Canada. Mandelbaum kept a low profile during her\nexile, and passed away in 1894.</p>"}, {"name": "Mary Carr", "countryCode": "GB", "country": "United Kingdom", "pathway": "Founded own organization", "leaderCount": 1, "body": "<p>Little is known about Mary “Polly” Carr’s early life, but she is\nwidely credited with founding “The 40 Thieves” in the late 1800s—an all\nfemale fencing operation that preceded The 40 Elephants. However, some\nrecords suggest that the organization’s origins can be traced to the\nearly 1700s. She operated and recruited in the Elephant and Castle\nneighborhood in London—neighborhoods that were home to the working\nclass. During the peak of the industrial revolution, with limited\noptions for women, those seeking a better life turned to crime as their\nonly alternative and joined the group. Under Mary Carr, “The 40 Thieves”\nwere loosely organized and did not commit major thefts, but the\noperation was very lucrative nonetheless. Frequently in and out of jail,\nCarr lost leadership in the early 1920s to Alice Diamond.</p>"}, {"name": "Saleha Saed", "countryCode": "GB", "country": "United Kingdom", "pathway": "Power grab", "leaderCount": 1, "body": "<p>Saleha Saed was born in 2002 or 2003 and was adopted by a single\nmother at an early age and raised in East London. According to most\naccounts, she had a decent, ordinary childhood, attended a good school,\nand showed no propensity toward deviant behavior. In her teens, however,\nshe began getting involved with a dangerous crowd where she met her\nboyfriend, founder of a county line operation—urban gangs that traffic\ndrugs into smaller towns and rural areas—called “Fat Boy Line.” Saleha\nrose to the top of the operation by grasping the power from her\nboyfriend when she was just 18 years old. She is also suspected of\nhaving established a shell company through which she laundered the\nproceeds of drug deals. She was sentenced in 2024 for five years on the\ngrounds that she trafficked large amounts of cocaine and heroine from\nLondon to surrounding towns. Because Saleha held a privileged position\nas the partner of the leader and she wrestled control from him, her path\nto leadership does not fit the typical “rising through the ranks”\ntrajectory, which usually implies gradual promotion within an\norganization’s hierarchy. Her path to leadership would be better\ndescribed as a power grab, takeover, or subversive leadership\nascension.</p>"}, {"name": "María Baldemar León", "countryCode": "US", "country": "United States", "pathway": "Rose through ranks", "leaderCount": 1, "body": "<p>María “Chata” Baldemar León, was born in Mexico, though little is\nknown about her early life. She immigrated to Los Angeles in the United\nStates in the mid-1980s, where she joined the Avenues Gang, a group\nnamed after the street they operated on in Los Angeles. Throughout the\n1990s, she was arrested 14 times on charges ranging from drug to arms\ntrafficking and was deported twice to Mexico. However, she found her way\nback to the United States each time. Over time, Baldemar León rose to\nthe top of the gang’s hierarchy, largely through attrition, as many gang\nmembers were arrested or killed. Her home became the gang’s main base,\nand with each loss in leadership, she was increasingly viewed as the\nnatural choice to lead. Baldemar León had 13 children with five\ndifferent men, all of whom she encouraged to pursue criminal activities.\nThe gang’s operations depended on illegal immigrants who smuggled crack\ncocaine and methamphetamine and worked off their debt by distributing\nthe drugs. In October 2002, Baldemar León was arrested, and after her\nimprisonment, her sons took over the gang’s business. She was eventually\nreleased in 2006 and deported to Mexico, yet returned to the U.S.\nshortly after. In 2008, formal criminal charges were filed against her\nagain.</p>"}, {"name": "Alice Diamond", "countryCode": "GB", "country": "United Kingdom", "pathway": "Rose through ranks", "leaderCount": 1, "body": "<p>“Queen of the Forty Elephants,“Alice Diamond,” or “Diamond Annie” was\nborn in the late 1800s. Her real identity remains unknown, but her\naliases are infamous in the underworld. She grew up in Southwark,\nLondon, near the Elephant and Castle neighborhood, from which the\nnotorious all-female fencing operation, the “40 Elephants,” took its\nname. The group’s first leader, Mary Carr, was frequently in and out of\njail, leaving a leadership gap that Alice Diamond stepped into at just\n20 years old. Originally named the “40 Thieves,”, the organization\nbecame known as the “40 Elephants” under Alice’s leadership. By\nintroducing innovative techniques for shoplifting, she quickly\ntransformed their small thefts to million pound heists executed in a\nmatter of minutes. She coordinated numerous schemes around London,\nforcing the police to spread thin chasing multiple heists. Each\noperation involved several members and was delicately planned like a\nchoreography, allowing them to create diversions and exchange stolen\ngoods in subtle movements. Their revenue funded an expensive wardrobe,\nand in a time where clothing was inextricably tied with social status,\nthey remained undetected because they dressed as respectable women.\nFurthermore, they used the patriarchy against itself, as the strict\ndress codes imposed on women provided a method of stealing unavailable\nto men: hiding stolen goods beneath their voluminous dresses. They\ncreated ingenious devices that enabled them to stash objects without\nattracting any attention. However, once they attracted attention by\nbeing an all-female organization, they resorted to cross-dressing and\nacted as couples. As their reputation in retail stores became\ninescapable, they diversified and expanded to other sectors. For\ninstance, they would take on maid positions to access wealthy homes and\nsteal, and even resorted to stealing back from their very clients who\nbought their stolen goods. Alice ran the group with an iron fist,\nearning her nickname from the numerous diamond rings she used to punch\nanyone who got in her way. Taller than the average English man at the\ntime, she had an imposing presence. Her violent ways led to her\ndownfall; when one of her subjects married against Alice’s wishes in the\nlate 1920s, she ordered the organization to assault and beat her husband\nsenseless. This violent attack led to her 18 month sentence. During her\ntime in jail, another leader, Lillian Rose Kendall, rose to prominence.\nShe left the 40 elephants and ran a brothel until she died in 1952.</p>"}, {"name": "Lillian Rose Kendall", "countryCode": "GB", "country": "United Kingdom", "pathway": "Rose through ranks", "leaderCount": 1, "body": "<p>Lillian Rose Kendall, or the “Bobbed Hair Bandit” for her signature\nroaring 20’s hairstyle, was born in 1902 in London, United Kingdom. She\njoined “The 40 Elephants” and took over the organization’s leadership\nrole when Alice Diamond was arrested in the late 1920s. The 40 Elephants\nwere highly notorious at this point, which was less than ideal for their\nheists that relied on them being unnoticed. Therefore, Kendall decided\nto turn the organization in a different direction: the “smash-and-grab.”\nThe organizations would break into stores by driving into shops’ windows\nat full speed in the middle of the night, and grabbed everything they\ncould. Despite police efforts to convict her, she managed to outrun them\nfor 15 years. The end of the 40 Elephants came not with the arrest of\nKendall but with the second world war. As England entered a period of\ncrisis, circumstances changed completely, and the gang slowly faded. The\nrest of Kendall’s life is scarcely documented.</p>"}, {"name": "Enedina Arellano Félix", "countryCode": "MX", "country": "Mexico", "pathway": "Inherited power from male kin", "leaderCount": 1, "body": "<p>Enedina was born in 1961 in Mazatlán, Sinaloa, Mexico, and was protected by her family from her brothers&#x27; drug trafficking activities during her childhood. According to some accounts, Enedina hoped to compete in a beauty pageant at the Mazatlán Carnival when she was 16 years old but was unable to since her brothers were wanted by the authorities. She attended a private university in Guadalajara, Jalisco and graduated with a degree in accounting, after which, according to some accounts, she began helping her mother manage the family&#x27;s legal businesses.</p><p>In 1985, at the age of 24, Enedina married Luis Raúl Toledo Carrejo, a businessman, in Guadalajara, and the couple moved to Tijuana to manage family businesses. According to most credible accounts, this is when Enedina began her involvement in her bothers&#x27; drug trafficking operations by using the legal businesses she managed to launder money. In the early 1990s, she became more directly involved when her and her husband acquired a pharmaceutical company that was allegedly used to import precursor chemicals that the nascent Tijuana Cartel used to produce synthetic drugs. This is also when Enedina is said to have begun directly advising her brothers on the financial matters of the Tijuana Cartel.</p><p class=\"qp-source-note\"><strong>Source note:</strong> A recent account that is unsubstantiated by reliable evidence that illustrates gender bias in reporting is that in 1988/89, Enedina fell in love with a Sinaloa Cartel member, but that her brothers prohibited the relationship and killed him, triggering a war with the Sinaloa Cartel.</p><p>In early 2000, Jesús Labra Avilés, the financial mastermind of the Tijuana Cartel, was arrested and Enedina allegedly replaced him, putting her in charge of the finances and money laundering operations of the cartel. This event coincides with the United States Department of the Treasury sanctioning Enedina under the Foreign Narcotics Kingpin Designation Act in 2000.</p><p>In 2002, Enedina&#x27;s role expanded and became even more central after Ramon was killed and Benjamin was arrested, leaving the family weakened. In 2005, a U.S. investigation into the Tijuana Cartel identified 25 companies Enedina and her husband managed as the backbone of the organization&#x27;s money laundering operations. With the arrest of Francisco Javier in 2006, Enedina became the key advisor to Eduardo, the last standing male sibling.</p><p>On October 26, 2008, Eduardo was arrested following a shootout with the Federal Police in Tijuana, and Enedina took charge of the Tijuana Cartel during the apex of a brutal war against García Simental. Enedina was supported by her nephew Fernando, who took a prominent role as head of operations, and her sister Alicia. More than a year into her reign, the war ended and the Tijuana Cartel declared victory when García Simental was arrested in early 2010. Some accounts claim that following the war, Enedina negotiated a business deal with the Sinaloa Cartel that allowed them to traffic through Tijuana for a price, avoiding another war, though this is contested.</p><p>Extraordinarily little information exists about Enedina&#x27;s leadership, likely reflecting both reporting bias and her own low-profile approach. Most accounts claim that Enedina never liked the wars of her brothers and prefers to negotiate. Some also state that her role as money launderer and head of finances before her leadership made her business oriented, calculating, and savvy. Compared to her brothers, her and her sister, Alicia, prefer more private, low-profile lives, with virtually no private information existing about either of them.</p><p>Some experts claim that Enedina was preparing her nephew Fernando as her successor. However, in 2014, Fernando was arrested in Tijuana, leaving Enedina without the support of a key male family member. By 2018, however, journalists reported that at least three other male nephews were also operating in the organization under Enedina. Although Enedina Arellano Félix relies on family members to oversee some operational activities, this arrangement is similar to the delegation patterns observed under most male cartel leaders and does not indicate limited autonomy or authority over organizational decisions.</p><p>In 2015 and 2016, some reports suggest that Enedina restructured the cartel, decentralizing it and giving internal factions more autonomy. In 2016, one faction of the Tijuana Cartel forged an alliance with the Jalisco New Generation Cartel and adopted the name Tijuana New Generation Cartel. In 2018, one of these factions formed an alliance with the Chapitos faction of the Sinaloa Cartel. In 2023, Francisco was released from prison and rejoined Enedina and the Tijuana Cartel. With the alliance between CJNG and Los Chapitos in 2026 to fight the Los Mayitos, Enedina reportedly also forged a top-down alliance with CJNG and Los Chapitos. As of mid-2026, Enedina remains the leader of the Tijuana Cartel, and her public image continues to be frequently portrayed through gender stereotypes.</p>"}];
+
+  const countrySummary = [{"code": "AR", "leaders": 1, "cases": 1, "name": "Argentina"}, {"code": "AU", "leaders": 2, "cases": 2, "name": "Australia"}, {"code": "BR", "leaders": 2, "cases": 2, "name": "Brazil"}, {"code": "CN", "leaders": 1, "cases": 1, "name": "China"}, {"code": "CO", "leaders": 2, "cases": 2, "name": "Colombia"}, {"code": "GT", "leaders": 3, "cases": 3, "name": "Guatemala"}, {"code": "HN", "leaders": 1, "cases": 1, "name": "Honduras"}, {"code": "IN", "leaders": 1, "cases": 1, "name": "India"}, {"code": "IT", "leaders": 7, "cases": 5, "name": "Italy"}, {"code": "JP", "leaders": 3, "cases": 3, "name": "Japan"}, {"code": "MX", "leaders": 6, "cases": 6, "name": "Mexico"}, {"code": "MM", "leaders": 1, "cases": 1, "name": "Myanmar"}, {"code": "ZA", "leaders": 1, "cases": 1, "name": "South Africa"}, {"code": "ES", "leaders": 1, "cases": 1, "name": "Spain"}, {"code": "TZ", "leaders": 1, "cases": 1, "name": "Tanzania"}, {"code": "GB", "leaders": 4, "cases": 4, "name": "United Kingdom"}, {"code": "US", "leaders": 7, "cases": 7, "name": "United States"}, {"code": "VN", "leaders": 1, "cases": 1, "name": "Vietnam"}];
+
+  const byCode = Object.fromEntries(countrySummary.map(d => [d.code, d]));
+  const totalLeaders = queenpinsCases.reduce((sum, d) => sum + (d.leaderCount || 1), 0);
+
+  const mapEl = document.getElementById("qp-map");
+  const selectEl = document.getElementById("qp-country-select");
+  const allButton = document.getElementById("qp-all-button");
+  const resetButton = document.getElementById("qp-reset-button");
+  const headingEl = document.getElementById("qp-results-heading");
+  const casesEl = document.getElementById("qp-cases-container");
+
+  countrySummary
+    .slice()
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .forEach(d => {
+      const option = document.createElement("option");
+      option.value = d.code;
+      option.textContent = `${d.name} (${d.leaders})`;
+      selectEl.appendChild(option);
+    });
+
+  function escapeHTML(value) {
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function bodyToPlainText(body) {
+    const temp = document.createElement("div");
+    temp.innerHTML = body;
+    return (temp.textContent || temp.innerText || "").replace(/\s+/g, " ").trim();
+  }
+
+  function makePreview(body, maxLength = 330) {
+    const text = bodyToPlainText(body);
+    if (text.length <= maxLength) return text;
+    const clipped = text.slice(0, maxLength);
+    const lastSpace = clipped.lastIndexOf(" ");
+    return clipped.slice(0, lastSpace > 0 ? lastSpace : maxLength) + "…";
+  }
+
+  function renderCard(item) {
+    const multiLeader = item.leaderCount > 1
+      ? `<span class="qp-badge">${item.leaderCount} leaders in this case</span>`
+      : "";
+
+    return `
+      <article class="qp-card">
+        <h3>${escapeHTML(item.name)}</h3>
+        <div class="qp-meta">
+          <span class="qp-badge">${escapeHTML(item.country)}</span>
+          <span class="qp-badge">${escapeHTML(item.pathway)}</span>
+          ${multiLeader}
+        </div>
+        <p class="qp-preview">${escapeHTML(makePreview(item.body))}</p>
+        <details>
+          <summary>Read full case</summary>
+          <div class="qp-body">${item.body}</div>
+        </details>
+      </article>
+    `;
+  }
+
+  function leaderCount(items) {
+    return items.reduce((sum, d) => sum + (d.leaderCount || 1), 0);
+  }
+
+  function caseLabel(n) {
+    return n === 1 ? "case entry" : "case entries";
+  }
+
+  function leaderLabel(n) {
+    return n === 1 ? "woman leader" : "women leaders";
+  }
+
+  function showCountry(code) {
+    if (!byCode[code]) return;
+
+    const items = queenpinsCases.filter(d => d.countryCode === code);
+    const leaders = leaderCount(items);
+    const country = byCode[code].name;
+
+    selectEl.value = code;
+    headingEl.textContent =
+      `${country} — ${leaders} ${leaderLabel(leaders)} in ${items.length} ${caseLabel(items.length)}`;
+
+    casesEl.innerHTML = items.map(renderCard).join("");
+
+    if (window.matchMedia("(max-width: 760px)").matches) {
+      headingEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  function showAll() {
+    selectEl.value = "";
+
+    const items = queenpinsCases
+      .slice()
+      .sort((a, b) =>
+        a.country.localeCompare(b.country) ||
+        a.name.localeCompare(b.name)
+      );
+
+    headingEl.textContent =
+      `All ${totalLeaders} women leaders — ${items.length} case entries across ${countrySummary.length} countries`;
+
+    casesEl.innerHTML = items.map(renderCard).join("");
+  }
+
+  function resetCases() {
+    selectEl.value = "";
+    headingEl.textContent = "Select a country";
+    casesEl.innerHTML = `
+      <div class="qp-empty">
+        Click a colored country on the map, or choose a country from the menu above, to display its case studies.
+      </div>
+    `;
+  }
+
+  selectEl.addEventListener("change", function () {
+    if (this.value) showCountry(this.value);
+    else resetCases();
+  });
+
+  allButton.addEventListener("click", showAll);
+  resetButton.addEventListener("click", resetCases);
+
+  let chart = null;
+  let chartData = null;
+
+  function drawQueenpinsMap() {
+    if (!window.google || !google.visualization || !mapEl) return;
+
+    chartData = new google.visualization.DataTable();
+    chartData.addColumn("string", "Country");
+    chartData.addColumn("number", "Women leaders");
+
+    countrySummary.forEach(d => {
+      const row = chartData.addRow();
+      chartData.setCell(row, 0, d.code, d.name);
+      chartData.setCell(row, 1, d.leaders);
+    });
+
+    const maxLeaders = Math.max(...countrySummary.map(d => d.leaders));
+
+    const options = {
+      region: "world",
+      displayMode: "regions",
+      resolution: "countries",
+      backgroundColor: "transparent",
+      datalessRegionColor: "#eeeeee",
+      defaultColor: "#d9d9d9",
+      colorAxis: {
+        minValue: 1,
+        maxValue: maxLeaders,
+        colors: ["#d8e3ec", "#8aa7bd", "#3d647f"]
+      },
+      legend: {
+        textStyle: {
+          color: "#555555",
+          fontSize: 12
+        }
+      },
+      tooltip: {
+        textStyle: {
+          fontSize: 12
+        }
+      },
+      keepAspectRatio: true,
+      enableRegionInteractivity: true
+    };
+
+    chart = new google.visualization.GeoChart(mapEl);
+    chart.draw(chartData, options);
+
+    google.visualization.events.addListener(chart, "regionClick", function (event) {
+      if (byCode[event.region]) {
+        showCountry(event.region);
+      }
+    });
+
+    google.visualization.events.addListener(chart, "select", function () {
+      const selection = chart.getSelection();
+      if (!selection.length || selection[0].row == null) return;
+      const code = chartData.getValue(selection[0].row, 0);
+      if (byCode[code]) showCountry(code);
+    });
+  }
+
+  let resizeTimer = null;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      if (chart && chartData) drawQueenpinsMap();
+    }, 180);
+  });
+
+  if (window.google && google.charts) {
+    google.charts.load("current", { packages: ["geochart"] });
+    google.charts.setOnLoadCallback(drawQueenpinsMap);
+  } else {
+    mapEl.innerHTML = '<div class="qp-empty">The interactive map could not load. Use the country menu below to browse the cases.</div>';
+  }
+})();
+</script>
+
+<!-- =================== END QUEENPINS SECTION =================== -->
+
     
     
     
